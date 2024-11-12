@@ -12,6 +12,15 @@ from micromanager_gui import MicroManagerGUI
 if TYPE_CHECKING:
     from types import TracebackType
 
+# patch CMMCorePlus.instance to return our instance
+
+from pymmcore_remote import MMCorePlusProxy
+from pymmcore_plus.core import _mmcore_plus
+
+_core = MMCorePlusProxy()
+
+_mmcore_plus._instance = _core
+
 
 def main(args: Sequence[str] | None = None) -> None:
     """Run the Micro-Manager GUI."""
@@ -34,6 +43,8 @@ def main(args: Sequence[str] | None = None) -> None:
     win.show()
 
     sys.excepthook = _our_excepthook
+    from psygnal.qt import start_emitting_from_queue
+    start_emitting_from_queue()
     app.exec_()
 
 

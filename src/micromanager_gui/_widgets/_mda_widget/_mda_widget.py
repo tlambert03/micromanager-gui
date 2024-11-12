@@ -180,7 +180,7 @@ class MDAWidget_(MDAWidget):
         """Execute the MDA experiment corresponding to the current value."""
         sequence = self.value()
         # run the MDA experiment asynchronously
-        self._mmc.run_mda(sequence, output=output)
+        self._mmc.mda.run(sequence, output=output)
 
     # ------------------- private Methods ----------------------
 

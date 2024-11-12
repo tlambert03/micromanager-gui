@@ -60,7 +60,7 @@ class MicroManagerGUI(QMainWindow):
         self._core_link = CoreViewersLink(self, mmcore=self._mmc)
 
         # extend size to fill the screen
-        self.showMaximized()
+        # self.showMaximized()
 
         if config is not None:
             try:
